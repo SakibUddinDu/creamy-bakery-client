@@ -1,25 +1,70 @@
-import logo from './logo.svg';
+
+import { createContext, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
+import Home from "./Components/Home/Home/Home";
+import Login from "./Components/Home/Shared/Login/Login";
+import Dashboard from "./Components/MainDashbord/Dashboard/Dashboard";
+
+export const UserContext = createContext();
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <Router>
+          <Switch>
+            <Route path="/home">
+              <Home></Home>
+            </Route>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            {/* <PrivateRoute path="/checkout/:id">
+           
+              <Dashboard></Dashboard>
+            </PrivateRoute> */}
+            <Route path="/checkout/:id">
+              {/* <Checkout></Checkout> */}
+              <Dashboard></Dashboard>
+            </Route>
+            {/* <Route path="/appointment">
+              <Appointment></Appointment>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route> */}
+            {/* <PrivateRoute>
+            <Dashboard/>
+            </PrivateRoute> */}
+            {/* <PrivateRoute path="/allPatients">
+            <AllPatients></AllPatients>
+          </PrivateRoute>
+          <PrivateRoute path="/dashboard">
+            <Dashboard></Dashboard>
+          </PrivateRoute> */}
+            {/* <Route path="/dashboard">
+              <Dashboard/>
+            </Route> */}
+            {/* <Route path="/doctor/patients">
+             <AllPatients></AllPatients>
+            </Route>
+            <Route path="/addDoctor">
+             <AddDoctor/>
+            </Route> */}
+{/* 
+            <Route path="*">
+              <NotFound></NotFound>
+            </Route> */}
+
+          </Switch>
+        </Router>
+       </UserContext.Provider> 
   );
 }
 
 export default App;
+

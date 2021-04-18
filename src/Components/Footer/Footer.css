@@ -1,0 +1,22 @@
+footer {
+  background-color: #111430;
+  padding: 2rem 3rem;
+}
+
+footer .form-control {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  footer {
+    padding: 1rem 0.5rem;
+  }
+  footer h2 {
+    font-size: 1.2rem;
+  }
+  footer button {
+    font-size: 0.8rem;
+    padding: 0.3rem 2rem;
+  }
+}
