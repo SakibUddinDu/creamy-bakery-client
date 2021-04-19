@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Home from "./Components/Home/Home/Home";
 import Login from "./Components/Home/Shared/Login/Login";
+import PrivateRoute from "./Components/Home/Shared/Login/PrivateRoute/PrivateRoute";
 import Dashboard from "./Components/MainDashbord/Dashboard/Dashboard";
 
 export const UserContext = createContext();
@@ -23,14 +24,14 @@ function App() {
             <Route path="/login">
               <Login></Login>
             </Route>
-            {/* <PrivateRoute path="/checkout/:id">
+            <PrivateRoute path="/checkout/:_id">
            
               <Dashboard></Dashboard>
-            </PrivateRoute> */}
-            <Route path="/checkout/:id">
-              {/* <Checkout></Checkout> */}
+            </PrivateRoute>
+            {/* <Route path="/checkout/:_id">
+             
               <Dashboard></Dashboard>
-            </Route>
+            </Route> */}
             {/* <Route path="/appointment">
               <Appointment></Appointment>
             </Route>

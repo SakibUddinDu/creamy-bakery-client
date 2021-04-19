@@ -6,10 +6,10 @@ import {
   faUserPlus
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Nav, Row, Tab } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../../App";
 import logo from "../../../Resources/images/logo1.png";
 // import AddService from '../AddService/AddService';
@@ -23,8 +23,21 @@ import "./Dashboard.css";
 
 
 const Dashboard = () => {
-  const [user, setUser] = useContext(UserContext);
-  // document.title = "Dashboard||Creative Agency";
+
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  // console.log(loggedInUser);
+
+  const { _id } = useParams();
+
+  const [product, setProduct] = useState({});
+  // console.log(product);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/product/' +_id)    //product er pore / dei ni,           + app.js id ar eidike  _id
+      .then((res) => res.json())
+      .then((data) => setProduct(data));
+  }, [_id]);
+  
 
   const {
     register,
@@ -55,9 +68,9 @@ const Dashboard = () => {
   return (
     <Tab.Container
       defaultActiveKey={`${
-        user.isAdmin
+        loggedInUser.isAdmin
           ? "service-list-admin"
-          : user.service
+          : loggedInUser.service
           ? "order"
           : "service-list-customer"
       }`}
@@ -69,7 +82,7 @@ const Dashboard = () => {
               <img src={logo} alt="logo" className="my-3 my-lg-3 img-fluid" />
             </Link>
             <Nav className="flex-column">
-              {user.isAdmin ? (
+              {loggedInUser.isAdmin ? (
                 <>
                   <Nav.Item>
                     <Nav.Link eventKey="service-list-admin">
@@ -132,6 +145,7 @@ const Dashboard = () => {
 
         <Col className="tab-big px-0 " xs={11} lg={10}>
           <h5>Order</h5>
+          {/* <h2>{_id}</h2> */}
 
           <form
             className="ms-5 mt-5 "
@@ -143,6 +157,7 @@ const Dashboard = () => {
                 type="text"
                 {...register("name", { required: true })}
                 name="name"
+                defaultValue={loggedInUser.name}
                 placeholder="Enter Your Name"
                 className="form-control"
               />
@@ -152,27 +167,33 @@ const Dashboard = () => {
             </div>
             <br />
 
-            <div className="form-group">
-              <input
-                type="text"
-                {...register("phone", { required: true })}
-                name="phone"
-                placeholder="Phone Number"
-                className="form-control"
-              />
-              {errors.phone && (
-                <span className="text-danger">This field is required</span>
-              )}
-            </div>
-            <br />
+         
             <div className="form-group">
               <input
                 type="text"
                 {...register("email", { required: true })}
+                defaultValue={loggedInUser.email}
                 placeholder="Email"
                 className="form-control"
               />
               {errors.email && (
+                <span className="text-danger">This field is required</span>
+              )}
+            </div>
+            <br />
+
+            <div className="form-group">
+              <input
+                type="text"
+                {...register("product", { required: true })}
+                name="product"
+                defaultValue={product.name}
+                // placeholder="Phone Number"
+                className="form-control"
+              />
+             
+
+              {errors.phone && (
                 <span className="text-danger">This field is required</span>
               )}
             </div>
@@ -230,7 +251,7 @@ const Dashboard = () => {
             <br />
             <div className="d-flex justify-content-between">
               <div>
-                <p>Your Charge will be .....................</p>
+                <p>Your Charge will be  {product.price}</p>
               </div>
               <div className="form-group ">
                 <button type="submit" className="btn btn-secondary  text-white">

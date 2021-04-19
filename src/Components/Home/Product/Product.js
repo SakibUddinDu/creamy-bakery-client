@@ -17,7 +17,7 @@ const Product = ({ product }) => {
           <h2>${product.price}</h2>
         </Card.Text>
       </Card.Body>
-      <Link to={`/checkout/${ product.id}`}>
+      <Link to={`/checkout/${ product._id}`}>
           <Button  variant="secondary">Buy Now</Button>
           </Link>
     </Card>
