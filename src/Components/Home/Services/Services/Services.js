@@ -11,7 +11,6 @@ const Services = () => {
            <div className="container">
                <div className="section-header">
                    <h5 className=" text-uppercase text-center">Our Services</h5>
-                   {/* <h1>What Our Clients  Says </h1> */}
                </div>
                <div className="card-deck mt-5 row">
                     {

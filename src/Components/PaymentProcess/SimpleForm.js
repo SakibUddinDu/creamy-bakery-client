@@ -43,9 +43,9 @@ const SimpleForm = ({handlePayment}) => {
     <div>
         <form onSubmit={handleSubmit}>
             <CardElement />
-            <button className="btn-secondary" type="submit" disabled={!stripe}>
+            {/* <button className="btn-secondary" type="submit" disabled={!stripe}>
                 Pay
-            </button>
+            </button> */}
         </form>
         {
             paymentError && <p style={{color: 'red'}}>{paymentError}</p>

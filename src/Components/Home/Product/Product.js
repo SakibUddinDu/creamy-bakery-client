@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Product.css";
-// import { Col, Row } from 'react-bootstrap';
 
 const Product = ({ product }) => {
   return (

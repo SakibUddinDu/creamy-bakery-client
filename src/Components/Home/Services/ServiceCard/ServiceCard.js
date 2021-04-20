@@ -13,9 +13,7 @@ const ServiceCard = ({service}) => {
                     <small className="m-0">{title}</small>
                 </div>
             </div>
-            {/* <div className="card-body">
-                <p className="card-text text-center">{quote}</p>
-            </div> */}
+         
        </div>
     );
 };

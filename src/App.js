@@ -2,15 +2,24 @@
 import { createContext, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
+import AddProduct from "./Components/AddProduct/AddProduct";
+import AddReview from "./Components/AddReview/AddReview";
+import AllOrders from "./Components/AllOrders/AllOrders";
+import Dashboard from './Components/Dashboard/Dashboard/Dashboard';
 import Home from "./Components/Home/Home/Home";
 import Login from "./Components/Home/Shared/Login/Login";
-import PrivateRoute from "./Components/Home/Shared/Login/PrivateRoute/PrivateRoute";
-import Dashboard from "./Components/MainDashbord/Dashboard/Dashboard";
+import PrivateRoute from './Components/Home/Shared/Login/PrivateRoute/PrivateRoute';
+import NotFound from "./Components/Home/Shared/NotFound/NotFound";
+import MakeAdmin from "./Components/MakeAdmin/MakeAdmin";
+import ManageProduct from "./Components/ManageProduct/ManageProduct";
+import Orders from "./Components/Orders/Orders/Orders";
+
 
 export const UserContext = createContext();
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
+ 
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
@@ -28,38 +37,32 @@ function App() {
            
               <Dashboard></Dashboard>
             </PrivateRoute>
-            {/* <Route path="/checkout/:_id">
-             
+            <PrivateRoute path="/dashboard">
               <Dashboard></Dashboard>
-            </Route> */}
-            {/* <Route path="/appointment">
-              <Appointment></Appointment>
+            </PrivateRoute>
+           
+            <Route path="/orderList">
+              <Orders></Orders>
             </Route>
-            <Route path="/login">
-              <Login></Login>
-            </Route> */}
-            {/* <PrivateRoute>
-            <Dashboard/>
-            </PrivateRoute> */}
-            {/* <PrivateRoute path="/allPatients">
-            <AllPatients></AllPatients>
-          </PrivateRoute>
-          <PrivateRoute path="/dashboard">
-            <Dashboard></Dashboard>
-          </PrivateRoute> */}
-            {/* <Route path="/dashboard">
-              <Dashboard/>
-            </Route> */}
-            {/* <Route path="/doctor/patients">
-             <AllPatients></AllPatients>
+            <Route path="/addReview">
+              <AddReview></AddReview>
             </Route>
-            <Route path="/addDoctor">
-             <AddDoctor/>
-            </Route> */}
-{/* 
+            <Route path="/addProduct">
+              <AddProduct></AddProduct>
+            </Route>
+            <Route path="/makeAdmin">
+              <MakeAdmin/>
+            </Route>
+            <Route path="/allOrders">
+             <AllOrders/>
+            </Route>
+            <Route path="/manageProduct">
+             <ManageProduct/>
+            </Route>
+
             <Route path="*">
               <NotFound></NotFound>
-            </Route> */}
+            </Route>
 
           </Switch>
         </Router>
