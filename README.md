@@ -1,9 +1,10 @@
-Live Site:  https://creamy-2e5f0.web.app/
+## Live Site: 
+https://creamy-2e5f0.web.app/
 
 
-Technology and library/framework used:
+## Technology and library/framework used:
 
-Frontend:
+## Frontend:
 Html5
 CSS
 React
@@ -14,16 +15,16 @@ React hook form
 Firebase Authentication
 Firebase Hosting
 
-Backend:
+## Backend:
 NodeJs
 ExpressJs
 Heroku
 
-Database:
+## Database:
 MongoDB
 
 
-Features :
+## Features :
        Full-Stack web app, you have hassle free google sign in method. 
        An authenticated user can order his/her desired products from our web apps. 
        Admin Dashboard / User Dashboard. (Role Detection based on email) 
